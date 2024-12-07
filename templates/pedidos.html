@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - Tienda de Ropa</title>
+</head>
+<body>
+    <h1>Mis Pedidos</h1>
+    <ul>
+        {% for pedido in pedidos %}
+        <li>{{ pedido.producto }} - Cantidad: {{ pedido.cantidad }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Volver a la página principal</a>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Tienda de Ropa</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #444;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: #888888;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info strong {
+            font-size: 1.2rem;
+            color: #333333;
+        }
+
+        .product-info span {
+            font-size: 1.1rem;
+            color: #000000;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff0000;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #ffffff;
+            background-color: #ff0000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+    <body>
+        <div class="container">
+            <h1>Tienda de Ropa</h1>
+            <center><img src="/static/img/LogoNuevo.png" alt="Logo de la tienda" width="30%"></center>
+            
+            <ul class="product-list">
+                {% for producto in productos %}
+                    <li class="product-item">
+                        <div class="product-image">
+                            <!-- Si la imagen del producto está en la base de datos, se muestra, si no se muestra una imagen predeterminada -->
+                            {% if producto.imagen %}
+                                <img src="data:image/jpeg;base64,{{ producto.imagen|b64encode }}" alt="{{ producto.nombre }}" width="20%" padding="25%">
+                            {% else %}
+                                <img src="/static/img/default-product.png" alt="Imagen del producto" width="25%">
+                            {% endif %}
+                        </div>
+                        <div class="product-info">
+                            <strong>{{ producto.nombre }}</strong><br>
+                            <span>${{ producto.precio }}</span>
+                        </div>
+                        <form action="{{ url_for('agregar_al_carrito', producto=producto.nombre) }}" method="POST">
+                            <label for="cantidad_{{ producto.id }}">Cantidad:</label>
+                            <input type="number" id="cantidad_{{ producto.id }}" name="cantidad" min="1" value="1" required>
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <button type="submit" class="add-to-cart-button">Agregar al Carrito</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+    
+            <div class="nav-links">
+                <a href="/carrito">Ver Carrito</a>
+                <a href="/perfil">Ver Perfil</a>
+            </div>
+        </div>
+    </body>
+
+</html>

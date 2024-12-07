@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la Tienda de Ropa</title>
+    <style>
+        /* Reset básico */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Layout principal */
+        .page-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #1c1c1c;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        /* Estilos del logo */
+        .logo {
+            max-width: 400px;
+            max-height: auto;
+        }
+
+        /* Sliders de publicidad */
+        .ad-slider {
+            width: 200px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            display: none; /* Se oculta en móviles */
+        }
+
+        .ad-slider .slides {
+            display: flex;
+            flex-direction: column;
+            animation: slide 15s infinite;
+        }
+
+        .ad-slider img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        @keyframes slide {
+            0%, 20% {
+                transform: translateY(0);
+            }
+            25%, 45% {
+                transform: translateY(-200px);
+            }
+            50%, 70% {
+                transform: translateY(-400px);
+            }
+            75%, 95% {
+                transform: translateY(-600px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos de navegación */
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: #ff0000;
+            background-color: #2c2c2c;
+        }
+
+        /* Media queries para responsividad */
+        @media (min-width: 1200px) {
+            .ad-slider {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Slider izquierdo -->
+        <div class="ad-slider">
+            <div class="slides">
+                <img src="/static/img/pngwing.com.png"  alt="Publicidad 1"><br><br><br>
+                <img src="/static/img/pngwing.com.png"  alt="Publicidad 2"><br><br><br>
+                <img src="/static/img/pngwing.com.png"  alt="Publicidad 3"><br><br><br>
+                <img src="/static/img/pngwing.com.png"  alt="Publicidad 4"><br><br><br>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <center><div class="container">
+            <img src="/static/img/LogoNuevo.png" alt="Logo de la Tienda de Ropa" class="logo">
+            <h1>¡Bienvenido a la Tienda de Ropa!</h1>
+            <p>Explora nuestra colección de ropa.</p>
+            <nav>
+                <a href="/registro">Registro</a>
+                <a href="/login">Inicio de Sesión</a>
+            </nav>
+        </div>
+        </center>
+        <!-- Slider derecho -->
+        <div class="ad-slider">
+            <div class="slides">
+                <img src="/static/img/pngwing.com (1).png" alt="Publicidad 5"><br><br>
+                <img src="/static/img/pngwing.com (1).png" alt="Publicidad 6"><br><br>
+                <img src="/static/img/pngwing.com (1).png" alt="Publicidad 7"><br><br>
+                <img src="/static/img/pngwing.com (1).png" alt="Publicidad 8"><br><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
